@@ -5,12 +5,23 @@ include "uploaddb.php";
 
 // gloabal varibals for importans
 $target_dir = "upload/";
-$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$target_file = $target_dir . basename($_FILES["video"]["name"]);
+$target_file_image = $target_dir . basename($_FILES["image"]["name"]);
+
 $uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+// dataBaseValuesInsert
+$videoUrl = basename($_FILES["video"]["name"]);
+$imageURl = basename($_FILES["image"]["name"]);
+$videoTitle = $_POST['title'];
+$category = $_POST['cat'];
+$description = $_POST['des'];
+$views = 0 ;
+
 
 
 $resultOfDataBase = $db->query("SELECT * FROM video");
+
 
 
 $UserDataBaseResult = [];
@@ -29,18 +40,18 @@ if(mysqli_num_rows($resultOfDataBase))
 }
 
 // Allow certain file formats
-else if($_FILES["fileToUpload"]["type"] != "video/mp4") {
+else if($_FILES["video"]["type"] != "video/mp4") {
  
  exit();
 }
 
 
-if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+if (move_uploaded_file($_FILES["video"]["tmp_name"], $target_file) && move_uploaded_file($_FILES["image"]["tmp_name"], $target_file_image)) {
 
-        if($insert = $db->query("INSERT INTO video (UserName,Email,Password,Role) VALUES ('{$userName}','{$userEmail}','{$hasedPassowrd}', '{$defultAdnimpostion}') ")) {
+        if($insert = $db->query("INSERT INTO video (CategoryID,url,imgUrl,description,title,views) VALUES ('{$category}','{$videoUrl}', '{$imageURl}','{$description}', '{$videoTitle}', '{$views}') ")) {
             echo $db->affected_rows;
 
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+        echo "The file ". basename( $_FILES["video"]["name"]). " has been uploaded.";
     }
 } 
 else {

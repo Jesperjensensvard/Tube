@@ -31,28 +31,29 @@
                     <span class="input-group-text">Upload Video</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" name="fileToUpload" class="custom-file-input" id="inputGroupFile01">
+                    <input type="file" name="video" class="custom-file-input" id="inputGroupFile01">
                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
                 </div>
+
                 <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Upload Thumbnail</span>
                 </div>
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="inputGroupFile01">
+                    <input type="file" name="image" class="custom-file-input" id="inputGroupFile01">
                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                 </div>
                 </div>
 
                 <div class="form-group">
                   <label for="exampleFormControlInput1">Title</label>
-                  <input type="text" class="form-control"  placeholder="Title">
+                  <input type="text" name ="title" class="form-control"  placeholder="Title">
                 </div>
 
                 <div class="form-group">
                   <label for="exampleFormControlSelect1">Category</label>
-                  <select class="form-control" id="exampleFormControlSelect1">
+                  <select class="form-control" name="cat" id="exampleFormControlSelect1">
                     <option>Music</option>
                     <option>komedi</option>
                     <option>gaming</option>
@@ -63,7 +64,7 @@
 
                 <div class="form-group">
                   <label for="exampleFormControlTextarea1">Video Description</label>
-                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  <input type="text" name="des" class="form-control" id="exampleFormControlTextarea1" rows="3"> 
                 </div>
                 <button type="submit" class="btn btn-secondary btn-lg btn-block" >Upload!</button>
         </form>
