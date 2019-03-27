@@ -1,5 +1,5 @@
 
-function makeRequest(url, method, formdata, callback) {
+/* function makeRequest(url, method, formdata, callback) {
     fetch(url, {
         method: method,
         body: formdata
@@ -22,7 +22,7 @@ function getCategory() {
 
 function showCategory(response) {
     console.log(response)
-}
+} */
 
 
-getCategory();
+/* getCategory(); */
