@@ -1,18 +1,19 @@
 <?php
+// include session_start
+session_start();
 //include db 
-
 include "uploaddb.php";
 
 // gloabal varibals for importans
 $target_dir = "upload/";
-$target_file = $target_dir . basename($_FILES["video"]["name"]);
-$target_file_image = $target_dir . basename($_FILES["image"]["name"]);
+$target_file = $target_dir . basename( mysqli_real_escape_string($db, $_FILES["video"]["name"]));
+$target_file_image = $target_dir . basename( mysqli_real_escape_string( $db, $_FILES["image"]["name"]));
 
 $uploadOk = 1;
 
 // dataBaseValuesInsert
-$videoUrl = basename($_FILES["video"]["name"]);
-$imageURl = basename($_FILES["image"]["name"]);
+$videoUrl = basename( mysqli_real_escape_string( $db, $_FILES["video"]["name"]));
+$imageURl = basename( mysqli_real_escape_string( $db, $_FILES["image"]["name"]));
 $videoTitle = $_POST['title'];
 $category = $_POST['cat'];
 $description = $_POST['des'];
@@ -43,6 +44,10 @@ if(mysqli_num_rows($resultOfDataBase))
 else if($_FILES["video"]["type"] != "video/mp4") {
  
  exit();
+}
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+   && $imageFileType != "gif" ) {
+    exit();
 }
 
 
